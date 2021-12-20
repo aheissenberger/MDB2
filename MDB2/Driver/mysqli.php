@@ -801,8 +801,8 @@ class MDB2_Driver_mysqli extends MDB2_Driver_Common
         if ($this->options['multi_query']) {
             $result = mysqli_multi_query($connection, $query);
         } else {
-            $resultmode = $this->options['result_buffering'] ? MYSQLI_USE_RESULT : MYSQLI_USE_RESULT;
-            $result = mysqli_query($connection, $query);
+            $resultmode = $this->options['result_buffering'] ? MYSQLI_STORE_RESULT : MYSQLI_USE_RESULT;
+            $result = mysqli_query($connection, $query, $resultmode);
         }
 
         if (!$result) {
